@@ -1,0 +1,22 @@
+# configs/connectors.yml
+checkpoint_pg:
+  host: 192.168.0.33
+  port: 5432
+  database: psqlanalytics
+  user: postgres
+  password: khronos
+
+postgresql:
+  pg-test:
+    host: 192.168.0.33
+    port: 5432
+    database: psqlanalytics
+    user: postgres
+    password: khronos
+
+oracle:
+  ORCL_TEST:
+    dsn: 192.168.0.33:1521/?service_name=oracle_project
+    user: replicator
+    password: replicator
+

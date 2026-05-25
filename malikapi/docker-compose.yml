@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # FastAPI сервер (основное приложение)
+  api:
+    build: .
+    container_name: replication-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./configs:/app/configs:ro          # монтируем конфиги (только чтение)
+      - ./users.json:/app/users.json        # сохраняем пользователей
+      - ./uuids.txt:/app/uuids.txt          # сохраняем uuid
+    environment:
+      - PYTHONPATH=/app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+
+  # Streamlit UI для мониторинга
+  ui:
+    build: .
+    container_name: replication-ui
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./configs:/app/configs:ro
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run ui/app.py --server.port 8501 --server.address 0.0.0.0
+    restart: unless-stopped
+
+  # # Планировщик репликации (запускает jobs по расписанию из replication_jobs.yml)
+  # scheduler:
+  #   build: .
+  #   container_name: replication-scheduler
+  #   volumes:
+  #     - ./configs:/app/configs:ro
+  #     # опционально, если нужно писать логи в файл
+  #     - ./logs:/app/logs
+  #   environment:
+  #     - PYTHONPATH=/app
+  #   command: python scheduler_runner.py
+  #   restart: unless-stopped
+
+  # (Опционально) PostgreSQL для целевой БД и чекпоинтов – если нужна локальная
+  # postgres:
+  #   image: postgres:15
+  #   container_name: replication-postgres
+  #   environment:
+  #     POSTGRES_DB: psqlanalytics
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: khronos
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+  # (Опционально) Oracle XE
+  # oracle:
+  #   image: gvenzl/oracle-xe:21-slim
+  #   container_name: replication-oracle
+  #   environment:
+  #     ORACLE_PASSWORD: replicator
+  #     APP_USER: replicator
+  #     APP_USER_PASSWORD: replicator
+  #   ports:
+  #     - "1521:1521"
+  #   volumes:
+  #     - oracle_data:/opt/oracle/oradata
+  #   restart: unless-stopped
+
+volumes:
+  pg_data:
+  # oracle_data:

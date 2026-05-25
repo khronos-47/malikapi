@@ -1,0 +1,102 @@
+replication_jobs:
+  - id: oracle_to_pg_university
+    description: "Репликация университетской БД Oracle → PostgreSQL"
+    enabled: true
+
+    mode: scheduled
+    interval_seconds: 10
+
+    replications:
+      - id: rep_faculty
+        source:
+          type: oracle
+          instance: ORCL_TEST
+          schema: REPLICATOR
+          table: FACULTY
+          columns: [ID, NAME]
+          delta_column: ID
+          key_columns: [ID]
+        target:
+          type: postgresql
+          instance: pg-test
+          schema: public
+          table: faculty
+
+      - id: rep_group
+        source:
+          type: oracle
+          instance: ORCL_TEST
+          schema: REPLICATOR
+          table: STUDENT_GROUP
+          columns: [ID, NAME, FACULTY_ID]
+          delta_column: ID
+          key_columns: [ID]
+        target:
+          type: postgresql
+          instance: pg-test
+          schema: public
+          table: student_group
+
+      - id: rep_discipline
+        source:
+          type: oracle
+          instance: ORCL_TEST
+          schema: REPLICATOR
+          table: DISCIPLINE
+          columns: [ID, NAME]
+          delta_column: ID
+          key_columns: [ID]
+        target:
+          type: postgresql
+          instance: pg-test
+          schema: public
+          table: discipline
+
+      - id: rep_student
+        source:
+          type: oracle
+          instance: ORCL_TEST
+          schema: REPLICATOR
+          table: STUDENT
+          columns:
+            - ID
+            - LAST_NAME
+            - FIRST_NAME
+            - MIDDLE_NAME
+            - PASSPORT_SERIES
+            - PASSPORT_NUMBER
+            - PASSPORT_ISSUED
+            - CITIZENSHIP
+            - REGISTRATION_ADDR
+            - BIRTH_DATE
+            - GROUP_ID
+            - UPDATED_AT
+          delta_column: UPDATED_AT
+          key_columns: [ID]
+        target:
+          type: postgresql
+          instance: pg-test
+          schema: public
+          table: student
+
+      - id: rep_grade
+        source:
+          type: oracle
+          instance: ORCL_TEST
+          schema: REPLICATOR
+          table: GRADE
+          columns:
+            - ID
+            - STUDENT_ID
+            - DISCIPLINE_ID
+            - VALUE
+            - UPDATED_AT
+          delta_column: UPDATED_AT
+          key_columns: [ID]
+        target:
+          type: postgresql
+          instance: pg-test
+          schema: public
+          table: grade
+
+

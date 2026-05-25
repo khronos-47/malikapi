@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it replication-api python malikapi/cli/app.py "$@"

@@ -1,0 +1,18 @@
+sqlplus replicator/replicator@localhost:1521/oracle_project
+ sqlplus sys/khronos@localhost:1521/oracle_project as sysdba
+sqlplus / as sysdba
+SELECT username FROM all_users ORDER BY username;
+ALTER SESSION SET CONTAINER = ORACLE_PROJECT;
+SHUTDOWN IMMEDIATE;
+STARTUP;
+
+--------------------------
+psql -d psqlanalytics -h localhost -U postgres
+chcp 1251\
+
+
+1)Сделать таблицы для студентов   ORacle->postgres
+2)ДЗ => postgress -> Oracle
+
+Streamlite
+python3 data_generator/cli.py --scenario basic --steps 500

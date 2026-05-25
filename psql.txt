@@ -1,0 +1,171 @@
+Общие
+  \copyright             условия использования и распространения PostgreSQL
+  \crosstabview [СТОЛБЦЫ] выполнить запрос и вывести результат в перекрёстном виде
+  \errverbose            вывести максимально подробное сообщение о последней ошибке
+  \g [(ПАРАМЕТРЫ)] [ФАЙЛ] выполнить запрос (и направить результат в файл
+                          или канал |); \g без аргументов равнозначно ";"
+  \gdesc                 описать результат запроса, но не выполнять его
+  \gexec                 выполнить запрос, а затем выполнить каждую строку в результате
+  \gset [ПРЕФИКС]        выполнить запрос и сохранить результат в переменных
+                         psql
+  \gx [(ПАРАМЕТРЫ)] [ФАЙЛ] то же, что \g, но в режиме развёрнутого вывода
+  \q                     выйти из psql
+  \restrict ОГРАНИЧИВАЮЩИЙ_КЛЮЧ
+                         войти в ограниченный режим с указанным ключом
+  \unrestrict ОГРАНИЧИВАЮЩИЙ_КЛЮЧ
+                         выйти из ограниченного режима, если ключ совпадает
+  \watch [[i=]СЕК] [c=N] [m=MIN]
+                         повторять запрос через заданное число секунд, не более
+                         N раз, остановиться, если получено менее MIN строк
+
+Справка
+  \? [commands]          справка по командам psql c \
+  \? options             справка по параметрам командной строки psql
+  \? variables           справка по специальным переменным
+  \h [ИМЯ]               справка по заданному SQL-оператору; * - по всем
+
+Буфер запроса
+  \e [ФАЙЛ] [СТРОКА]     править буфер запроса (или файл) во внешнем редакторе
+  \ef [ФУНКЦИЯ [СТРОКА]] править определение функции во внешнем редакторе
+  \ev [VIEWNAME [LINE]]  править определение представления во внешнем редакторе
+  \p                     вывести содержимое буфера запросов
+  \r                     очистить буфер запроса
+  \w ФАЙЛ                записать буфер запроса в файл
+
+Ввод/Вывод
+  \copy ...              выполнить SQL COPY на стороне клиента
+  \echo [-n] [СТРОКА]    записать строку в поток стандартного вывода
+                         (-n отключает перевод строки)
+  \i ФАЙЛ                выполнить команды из файла
+  \ir ФАЙЛ               подобно \i, но путь задаётся относительно
+                         текущего скрипта
+  \o [ФАЙЛ]              выводить все результаты запросов в файл или канал |
+  \qecho [-n] [СТРОКА]   записать строку в выходной поток \o
+                         (-n отключает перевод строки)
+  \warn [-n] [СТРОКА]    записать строку в поток вывода ошибок
+                         (-n отключает перевод строки)
+
+Условия
+  \if ВЫРАЖЕНИЕ          начало блока условия
+  \elif ВЫРАЖЕНИЕ        альтернативная ветвь в текущем блоке условия
+  \else                  окончательная ветвь в текущем блоке условия
+  \endif                 end conditional block
+
+Informational
+  (options: S = show system objects, x = expanded mode, + = additional detail)
+  \d[Sx+]                list tables, views, and sequences
+  \d[S+]   NAME          describe table, view, sequence, or index
+  \da[Sx]  [PATTERN]     list aggregates
+  \dA[x+]  [PATTERN]     list access methods
+  \dAc[x+] [AMPTRN [TYPEPTRN]]  list operator classes
+  \dAf[x+] [AMPTRN [TYPEPTRN]]  list operator families
+  \dAo[x+] [AMPTRN [OPFPTRN]]   list operators of operator families
+  \dAp[x+] [AMPTRN [OPFPTRN]]   list support functions of operator families
+  \db[x+]  [PATTERN]     list tablespaces
+  \dc[Sx+] [PATTERN]     list conversions
+  \dconfig[x+] [PATTERN] list configuration parameters
+  \dC[x+]  [PATTERN]     list casts
+  \dd[Sx]  [PATTERN]     show object descriptions not displayed elsewhere
+  \dD[Sx+] [PATTERN]     list domains
+  \ddp[x]  [PATTERN]     list default privileges
+  \dE[Sx+] [PATTERN]     list foreign tables
+  \des[x+] [PATTERN]     list foreign servers
+  \det[x+] [PATTERN]     list foreign tables
+  \deu[x+] [PATTERN]     list user mappings
+  \dew[x+] [PATTERN]     list foreign-data wrappers
+  \df[anptw][Sx+] [FUNCPTRN [TYPEPTRN ...]]
+                         list [only agg/normal/procedure/trigger/window] functions
+  \dF[x+]  [PATTERN]     list text search configurations
+  \dFd[x+] [PATTERN]     list text search dictionaries
+  \dFp[x+] [PATTERN]     list text search parsers
+  \dFt[x+] [PATTERN]     list text search templates
+  \dg[Sx+] [PATTERN]     list roles
+  \di[Sx+] [PATTERN]     list indexes
+  \dl[x+]                list large objects, same as \lo_list
+  \dL[Sx+] [PATTERN]     list procedural languages
+  \dm[Sx+] [PATTERN]     list materialized views
+  \dn[Sx+] [PATTERN]     list schemas
+  \do[Sx+] [OPPTRN [TYPEPTRN [TYPEPTRN]]]
+                         list operators
+  \dO[Sx+] [PATTERN]     list collations
+  \dp[Sx]  [PATTERN]     list table, view, and sequence access privileges
+  \dP[itnx+] [PATTERN]   list [only index/table] partitioned relations [n=nested]
+  \drds[x] [ROLEPTRN [DBPTRN]]
+                         list per-database role settings
+  \drg[Sx] [PATTERN]     list role grants
+  \dRp[x+] [PATTERN]     list replication publications
+  \dRs[x+] [PATTERN]     list replication subscriptions
+  \ds[Sx+] [PATTERN]     list sequences
+  \dt[Sx+] [PATTERN]     list tables
+  \dT[Sx+] [PATTERN]     list data types
+  \du[Sx+] [PATTERN]     list roles
+  \dv[Sx+] [PATTERN]     list views
+  \dx[x+]  [PATTERN]     list extensions
+  \dX[x]   [PATTERN]     list extended statistics
+  \dy[x+]  [PATTERN]     list event triggers
+  \l[x+]   [PATTERN]     list databases
+  \sf[+]   FUNCNAME      show a function's definition
+  \sv[+]   VIEWNAME      show a view's definition
+  \z[Sx]   [PATTERN]     same as \dp
+
+Large Objects
+  \lo_export LOBOID FILE write large object to file
+  \lo_import FILE [COMMENT]
+                         read large object from file
+  \lo_list[x+]           list large objects
+  \lo_unlink LOBOID      delete a large object
+
+Formatting
+  \a                     toggle between unaligned and aligned output mode
+  \C [STRING]            set table title, or unset if none
+  \f [STRING]            show or set field separator for unaligned query output
+  \H                     переключить режим вывода в HTML (текущий: выкл.)
+  \pset [ИМЯ [ЗНАЧЕНИЕ]] установить параметр вывода таблицы
+                         (border|columns|csv_fieldsep|expanded|fieldsep|
+                         fieldsep_zero|footer|format|linestyle|null|
+                         numericlocale|pager|pager_min_lines|recordsep|
+                         recordsep_zero|tableattr|title|tuples_only|
+                         unicode_border_linestyle|unicode_column_linestyle|
+                         unicode_header_linestyle|xheader_width)
+  \t [on|off]            режим вывода только строк (сейчас: выкл.)
+  \T [СТРОКА]            задать атрибуты для <table> или убрать, если не заданы
+  \x [on|off|auto]       переключить режим развёрнутого вывода (сейчас: выкл.)
+
+Соединение
+  \c[onnect] {[БД|- ПОЛЬЗОВАТЕЛЬ|- КОМПЬЮТЕР|- ПОРТ|-] | conninfo}
+                         подключиться к другой базе данных
+                         (текущая: "psqlanalytics")
+  \conninfo              информация о текущем соединении
+  \encoding [КОДИРОВКА]  показать/установить клиентскую кодировку
+  \password [ИМЯ]        безопасно сменить пароль пользователя
+
+Операционная система
+  \cd [ПУТЬ]             сменить текущий каталог
+  \getenv ПЕР_PSQL ПЕР_ОКР прочитать переменную окружения
+  \setenv ИМЯ [ЗНАЧЕНИЕ] установить или сбросить переменную окружения
+  \timing [on|off]       включить/выключить секундомер (сейчас: выкл.)
+  \! [КОМАНДА]           выполнить команду в командной оболочке
+                         или запустить интерактивную оболочку
+
+Переменные
+  \prompt [ТЕКСТ] ИМЯ    предложить пользователю задать внутреннюю переменную
+  \set [ИМЯ [ЗНАЧЕНИЕ]]  установить внутреннюю переменную или вывести все,
+                         если имя не задано
+  \unset ИМЯ             сбросить (удалить) внутреннюю переменную
+
+Протокол расширенных запросов
+  \bind [ПАРАМЕТР]...    задать параметры запроса
+  \bind_named ИМЯ_ОПЕР [ПАРАМ]...
+                         задать параметры запроса для существующего подготовленного
+                         оператора
+  \close_prepared ИМЯ_ОПЕР
+                         закрыть существующий подготовленный оператор
+  \endpipeline           выйти из конвейерного режима
+  \flush                 передать серверу выводимые данные из буфера
+  \flushrequest          передать запрос серверу, чтобы сбросить его буфер вывода
+  \getresults [КОЛ_РЕЗ]  прочитать заданное количество результатов либо все,
+                          если параметр не указан
+  \parse ИМЯ_ОПЕР        создать подготовленный оператор
+  \sendpipeline          передать расширенный запрос в текущий конвейер
+  \startpipeline         перейти в конвейерный режим
+  \syncpipeline          добавить точку синхронизации в текущий конвейер

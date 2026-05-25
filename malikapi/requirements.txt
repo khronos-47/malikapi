@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+pandas
+pyyaml
+pydantic
+slowapi
+apscheduler
+python-multipart
+typer
+psycopg2-binary
+oracledb
+streamlit
+faker

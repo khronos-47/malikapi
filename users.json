@@ -1,0 +1,42 @@
+{
+  "malik": {
+    "username": "malik",
+    "password": "868c607a4a1460ff77da8f4fd7507d7dc7c5933de4b3e2f35f53c1b163ab2d21",
+    "status": {
+      "user_status": "default",
+      "banned": {}
+    },
+    "uuid": "873755bc-4bd4-4408-ae06-e7c10f1a8b7c",
+    "tables": {
+      "kaltable": {
+        "columns": []
+      },
+      "student": {
+        "columns": []
+      }
+    },
+    "requests": [],
+    "created_at": "2026-05-25T05:47:04.602037",
+    "updated_at": "2026-05-25T08:18:12.455483"
+  },
+  "malik2": {
+    "username": "malik2",
+    "password": "a41460a2774f3492b7cb00fa2e444e9d73bb990c4a860e8d660f41b3ab942026",
+    "status": {
+      "user_status": "default",
+      "banned": {}
+    },
+    "uuid": "29e7e8f4-7ca0-4ae8-909f-c223667c9d57",
+    "tables": {
+      "kaltable": {
+        "columns": []
+      },
+      "student": {
+        "columns": []
+      }
+    },
+    "requests": [],
+    "created_at": "2026-05-25T08:20:53.911024",
+    "updated_at": "2026-05-25T08:21:04.487551"
+  }
+}
